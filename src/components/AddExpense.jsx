@@ -9,6 +9,10 @@ export default function AddExpense() {
   const [amount, setAmount] = useState("");
 
   const handleSubmit = () => {
+    if (amount == 0 || title == ""){
+      return;
+    }
+    
     addExpense({
       id: Date.now(),
       title,
@@ -19,10 +23,10 @@ export default function AddExpense() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4 ">
       <Input
         placeholder="Expense title"
-        className="rounded-lg"
+        className="rounded-lg text-sm sm:text-base"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -30,17 +34,14 @@ export default function AddExpense() {
       <Input
         placeholder="Amount"
         type="number"
-        className="rounded-lg"
+        className="rounded-lg text-sm sm:text-base"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
 
-      <Button className="w-full rounded-lg"
-      onClick={handleSubmit}>
+      <Button className="w-full rounded-lg  py-5 sm:py-4" onClick={handleSubmit}>
         Add Expense
       </Button>
     </div>
   );
 }
-
-
